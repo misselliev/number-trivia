@@ -2,7 +2,11 @@
   <div id="app">
     <full-page :options="options" id="fullpage">
         <div class="section">
-            <h3>Section 1</h3>
+          <div class="container">
+            <img alt="hashtag">
+            <div class="quote-symbol">"</div>
+            <p class="trivia">Fact goes here</p>
+          </div>
         </div>
         <div class="section">
             <h3>Section 2</h3>
@@ -44,4 +48,31 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+body {
+  margin:0;
+  padding: 0;
+}
+.container{
+  margin: auto;
+  max-width: 800px;
+  padding: 80px 16px;
+}
+
+.section{
+  text-align: center;
+}
+
+.quote-symbol{
+  font-size: 64px;
+  line-height: 0;
+  margin-top: 50px;
+  color: white;
+}
+
+.quote{
+  color: pink;
+  font-size: 36px;
+  line-height: 1.5;  
+}
+
 </style>
