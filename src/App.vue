@@ -15,7 +15,7 @@
 
 export default {
   name: 'App',
-  created() {
+  randomize(){
     // let a = Math.floor(Math.random()*30)
     // let b = Math.ceil(Math.random()*30)
     // let min, max;
@@ -26,11 +26,11 @@ export default {
     //   min = a;
     //   max = b;
     // }
-    // fetch('http://numbersapi.com/random?json')
+  },
+  created() {
     fetch(`http://numbersapi.com/1..9`)
       .then(response => response.json())
       .then(data => {
-        console.log(data)
         this.trivia = data
         this.isLoaded = true
       })
