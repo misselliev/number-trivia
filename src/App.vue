@@ -1,17 +1,13 @@
 <template>
   <div id="app">
-    <full-page :options="options" id="fullpage">
-        <div class="section">
+    <full-page :options="options" id="fullpage" v-if="isLoaded">
+      <div v-for="fact in trivia" :key="fact" class="section">
           <div class="container">
-            <img alt="hashtag">
-            <div class="quote-symbol">"</div>
-            <p class="trivia">Fact goes here</p>
+            <img src="./assets/robot.png" alt="shower icon">
+            <p class="quote"><a :href="fact.text">{{ fact.text }}</a></p>
           </div>
-        </div>
-        <div class="section">
-            <h3>Section 2</h3>
-        </div>
-    </full-page>  
+      </div>
+  </full-page>
   </div>
 </template>
 
@@ -19,18 +15,21 @@
 
 export default {
   name: 'App',
-  // components: {
-  //   HelloWorld
-  // }
+  created() {
+    fetch('http://numbersapi.com/random?json')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        this.trivia = data.text
+        this.isLoaded = true
+      })
+  },
   data () {
       return {
+        isLoaded: false,
+        trivia: [],
         options: {
-          licenseKey: 'YOUR_KEY_HERE',
-          afterLoad: this.afterLoad,
-          scrollOverflow: true,
-          scrollBar: false,
-          menu: '#menu',
-          navigation: true,
+          scrollBar: true,
           anchors: ['page1', 'page2', 'page3'],
           sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401', '#1bcee6', '#ee1a59', '#2c3e4f', '#ba5be9', '#b4b8ab']
         }
@@ -73,6 +72,12 @@ body {
   color: pink;
   font-size: 36px;
   line-height: 1.5;  
+}
+
+img{
+  height: 10em;
+  width: 10em;
+  border-radius: 50%;
 }
 
 </style>
