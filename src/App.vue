@@ -4,7 +4,7 @@
       <div v-for="fact in trivia" :key="fact" class="section">
           <div class="container">
             <img src="./assets/robot.png" alt="shower icon">
-            <p class="quote"><a :href="fact.text">{{ fact.text }}</a></p>
+            <p class="quote">{{ fact }}</p>
           </div>
       </div>
   </full-page>
@@ -16,11 +16,22 @@
 export default {
   name: 'App',
   created() {
-    fetch('http://numbersapi.com/random?json')
+    // let a = Math.floor(Math.random()*30)
+    // let b = Math.ceil(Math.random()*30)
+    // let min, max;
+    // if (a > b) {
+    //   max = a;
+    //   min= b;
+    // }else{
+    //   min = a;
+    //   max = b;
+    // }
+    // fetch('http://numbersapi.com/random?json')
+    fetch(`http://numbersapi.com/1..9`)
       .then(response => response.json())
       .then(data => {
         console.log(data)
-        this.trivia = data.text
+        this.trivia = data
         this.isLoaded = true
       })
   },
@@ -29,9 +40,10 @@ export default {
         isLoaded: false,
         trivia: [],
         options: {
+          licenseKey: 'YOUR_KEY_HERE',
           scrollBar: true,
           anchors: ['page1', 'page2', 'page3'],
-          sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401', '#1bcee6', '#ee1a59', '#2c3e4f', '#ba5be9', '#b4b8ab']
+          sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401', '#1bcee6', '#ea2a', '#2c3e4f', '#ba5be9', '#b4b8ab']
         }
       }
     }
@@ -69,7 +81,7 @@ body {
 }
 
 .quote{
-  color: pink;
+  color: black;
   font-size: 36px;
   line-height: 1.5;  
 }
