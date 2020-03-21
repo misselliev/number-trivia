@@ -4,7 +4,9 @@
       <div v-for="fact in trivia" :key="fact" class="section">
           <div class="container">
             <img src="./assets/robot.png" alt="shower icon">
+            <p>Random number fact:</p>
             <p class="quote">{{ fact }}</p>
+            <p class="link">More facts like this <a href="http://numbersapi.com/">here</a></p>
           </div>
       </div>
   </full-page>
@@ -15,20 +17,17 @@
 
 export default {
   name: 'App',
-  randomize(){
-    // let a = Math.floor(Math.random()*30)
-    // let b = Math.ceil(Math.random()*30)
-    // let min, max;
-    // if (a > b) {
-    //   max = a;
-    //   min= b;
-    // }else{
-    //   min = a;
-    //   max = b;
-    // }
-  },
   created() {
-    fetch(`http://numbersapi.com/1..9`)
+    let a = Math.floor(Math.random()*30)
+    let b = Math.floor(Math.random()*30)
+    let min, max;
+    if (a > b) {
+      max = a;
+      min= b;
+    }else{
+      min = a;
+      max = b;
+    }    fetch(`http://numbersapi.com/${min}..${max}`)
       .then(response => response.json())
       .then(data => {
         this.trivia = data
@@ -42,8 +41,34 @@ export default {
         options: {
           licenseKey: 'YOUR_KEY_HERE',
           scrollBar: true,
-          anchors: ['page1', 'page2', 'page3'],
-          sectionsColor: ['#41b883', '#ff5f45', '#0798ec', '#fec401', '#1bcee6', '#ea2a', '#2c3e4f', '#ba5be9', '#b4b8ab']
+          sectionsColor: ['#41b883',
+          '#ff5f45',
+          '#0798ec',
+          '#fec401',
+          '#1bcee6',
+          '#ea2a',
+          '#ba5be9',
+          '#b4b8ab',
+          '#41b883',
+          '#ff5f45',
+          '#0798ec',
+          '#fec401',
+          '#1bcee6',
+          '#ee1a59',
+          '#ba5be9',
+          '#b4b8ab',
+          '#41b883',
+          '#ff5f45',
+          '#0798ec',
+          '#fec401',
+          '#1bcee6',
+          '#ee1a59',
+          '#ba5be9',
+          '#b4b8ab',
+          '#41b883',
+          '#ff5f45',
+          '#0798ec',
+          '#fec401',]
         }
       }
     }
@@ -51,13 +76,15 @@ export default {
 </script>
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,600&display=swap');
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 body {
   margin:0;
@@ -87,9 +114,17 @@ body {
 }
 
 img{
-  height: 10em;
-  width: 10em;
+  height: 12em;
+  width: 12em;
   border-radius: 50%;
 }
 
+p{
+  font-size: 1.5em;
+}
+
+.link{
+  margin-top:2em;
+  text-align: right;
+}
 </style>
