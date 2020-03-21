@@ -35,7 +35,7 @@ npm install
 ### Usage
 
 ```sh
-npm run serve
+npm run start
 ```
 
 ## :pencil2: Todo
