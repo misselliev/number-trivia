@@ -30,10 +30,7 @@ export default {
       min = a;
       max = b;
     }
-    // fetch(`http://numbersapi.com/${min}..${max}`)
-    fetch(
-      `https://alfacloud.pw/${min}..${max}?__cpo=aHR0cDovL251bWJlcnNhcGkuY29t`
-    )
+    fetch(`http://numbersapi.com/${min}..${max}`)
       .then(response => response.json())
       .then(data => {
         this.trivia = data;
