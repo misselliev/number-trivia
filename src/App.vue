@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <full-page :options="options" id="fullpage" v-if="isLoaded">
-      <div v-for="fact in trivia" :key="fact" class="section">
+      <div v-for="fact in trivia" :key="fact.number" class="section">
         <div class="container">
           <img src="./assets/robot.png" alt="shower icon" />
           <p>Random number fact:</p>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "App",
   created() {
@@ -30,10 +31,12 @@ export default {
       min = a;
       max = b;
     }
-    fetch(`http://numbersapi.com/${min}..${max}`)
-      .then(response => response.json())
-      .then(data => {
-        this.trivia = data;
+    axios({
+    method: 'get',
+    url: `https://cors-anywhere.herokuapp.com/http://numbersapi.com/${min}..${max}`,
+})
+      .then(response => {
+        this.trivia = response.data;
         this.isLoaded = true;
       });
   },
